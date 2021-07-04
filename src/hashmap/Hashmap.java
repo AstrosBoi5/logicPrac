@@ -8,8 +8,10 @@
 // 1 for
 
 package hashmap;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
 /**
@@ -21,18 +23,7 @@ public class Hashmap {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
-//        bai99();
-//        bai100();
-//            bai101();
-//            bai102();
-//            bai104();
-//            bai105();
-//                bai106();
-//                bai107();
-                checkExponentiation();
-        
-    }   
+    
     public static int hashmapPrac(){
         HashMap<Integer, Integer> mapDup = new HashMap<Integer, Integer>();
         int arrNum[] = {1,2,2,2,6,8,9};
@@ -65,7 +56,7 @@ public class Hashmap {
         return 0;
     }
     // 1 
-    public static void bai99(){
+    public static void bai099(){
         //Bài 99: Viết chương trình nhập vào 3 số thực. Hãy in 3 số ấy ra màn hình theo thứ tự tang dần mà chỉ dùng tối đa 1 biến phụ
         Scanner sc= new Scanner(System.in);
         float temp = 0;
@@ -288,7 +279,7 @@ public class Hashmap {
             case 6:
             case 9:
             case 11:
-                if(day == 31){
+                if(day == 30){
                     month = 1;
                     year++;
                     System.out.println("Ngay ke la 1/"+month+"/"+year);
@@ -690,6 +681,7 @@ public class Hashmap {
     }
     
     public static double checkBaseLog(int Number, int x){
+        //Viết hàm tính S = x^y
         double temp = Number;
         for(int i = 0; i < Number;i++){
             temp = temp / x;
@@ -699,4 +691,435 @@ public class Hashmap {
         }
         return 0;
     }
+    
+    public static void bai108(){
+        // Viết chương trình in bảng cửu chương ra màn hình
+        Scanner sc= new Scanner(System.in);
+        System.out.print("Enter X- ");  
+        int x= sc.nextInt(); 
+        System.out.print("Enter Y- ");  
+        int y= sc.nextInt(); 
+        
+        int Sum = (int) Math.pow(x, y);
+        
+        System.out.println("S =x^y: S= "+ Sum);
+    }
+    
+    public static void bai109(){
+        for(int i = 1; i <= 10;i++){
+            for(int j = 1; j <= 10;j++){
+                System.out.println(i + " *"+ j+" = "+i*j);
+            }
+        }
+    }
+    
+    public static int[] twoSum(int[] nums, int target){
+//        Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+//
+//You may assume that each input would have exactly one solution, and you may not use the same element twice.
+//
+//You can return the answer in any order.
+        Map<Integer,Integer> map = new HashMap<>();
+        for(int i = 0; i < nums.length;i++){
+            map.put(nums[i], i);
+        }
+        for(int i = 0; i < nums.length;i++){
+            int competent = target - nums[i];
+            if(map.containsKey(competent) && map.get(competent) != i){
+                return new int[]{i,map.get(competent)};
+            }
+        }
+         throw new IllegalArgumentException("No two sum solution");
+    }
+    
+    public static void bai110(){
+        //Cần có tổng 200000 đồng từ 3 loại giấy bạc 1000 đồng, 2000 đồng, 5000 đồng. Lập chương trình để tìm ra tất cả các phương án có thể
+        // x + 2y + 5z = 200
+        int i,j,k;
+        int count = 0;
+        for(i =0;i <= 200;++i){
+            for(j = 0; j <= 100; ++j){
+                for(k = 0; k <=40;++k){
+                    if(1000*i + 2000*j +5000*k == 200000){
+//                        System.out.println(i+" *1000 + "+ j+" 2000 + " + k+" *5000 = 2000000");
+                        count++;
+                    }
+                }
+            }
+        }
+        System.out.println(count + " co tong bay nhieu cach tinh");
+    }
+    public static boolean check10(int num){
+        if(num < 0 || num > 10){
+            return false;
+        }
+        return true;
+    }
+    
+    public static int calSum(int math, int lit){
+        int sum;
+        sum = (math + lit) /2;
+        return sum;
+    }
+    public static void sysout(int val){
+        System.out.println("Result is "+ val);
+    }
+    public static void bai115(){
+        //Viết chương trình nhập họ tên, điểm toán, điểm văn của 1 học sinh. Tính điểm trung bình và xuất ra kết quả
+        Scanner sc = new Scanner(System.in);
+        String name;
+        int math,lit;
+        System.out.println("please insert name");
+        name = sc.nextLine();
+        System.out.println("please insert math score");
+        math = sc.nextInt();
+        System.out.println("please insert liturate score");
+        lit = sc.nextInt();
+        
+        if(check10(math) && check10(lit)){
+            int sum = calSum(math, lit);
+            sysout(sum);
+        }else{
+            System.out.println("The insert value is invalid. Please check Math or Lit");
+        }
+        
+        
+    }
+    public static int input(){
+        Scanner sc = new Scanner(System.in);
+        int num = 0;
+        System.out.println("Please input value: ");
+        num = sc.nextInt();
+        
+        return num;
+    }
+    
+    public static int findX(){
+        Scanner sc = new Scanner(System.in);
+        int num = 0;
+        System.out.println("Please input value X: ");
+        num = sc.nextInt();
+        
+        return num;
+    }
+    
+    public static int multiSum(int val){
+        int sum = 0;
+        for(int i = 1; i <= val;i++){
+            sum += i;
+        }
+        return sum;
+    }
+    
+    public static int timeSum(int val, int x){
+        int sum = 0;
+        for(int i = 1; i <= val;i++){
+            sum += Math.pow(x,i);
+        }
+        return sum;
+    }
+    public static void output(int sum){
+        System.out.println("the result is " + sum);
+    }
+    
+    
+    public static void bai116(){
+        // Bài 116: Viết chương trình nhập n và tính tổng S = 1 + 2 + 3 + … + n
+        output(multiSum(input()));
+        
+    }
+    
+    public static void bai117(){
+        //Bài 117: Viết chương trình nhập n và tính tổng S(n) = x + x^2 + x^3 + … + x^n
+        output(timeSum(input(), findX()));
+    }
+    
+    public static boolean checkPrimeNo(int val){
+        
+        if (val < 2){
+            return false;
+        } else if (val > 2){
+            if (val % 2 == 0){
+                return false;
+            }
+            for (int i = 3; i <= Math.sqrt((float)val); i += 2){
+            if (val % i == 0)
+            {
+                return false;
+            }
+        }
+    }
+        return true;
+    }
+    
+    public static void showPrimeNum (){
+        int num = input();
+        for(int i = 1; i < num;i++ ){
+            if(checkPrimeNo(i) == true){
+                System.out.println("Prime Num below "+ num + " is "+ i);
+            }
+        }
+    }
+    
+    public static void bai119(){
+        //Liệt kê tất cả các số nguyên tố nhỏ hơn n
+        showPrimeNum();
+    }
+    
+    
+    public static boolean checkSquareNum(int val){
+        float check1 = (float) Math.sqrt(val);
+        int check2 = (int) Math.sqrt(val);
+        
+        if(check1 == check2){
+            return true;
+        }else{
+            return false;
+        }
+        
+    }
+    public static void showSquareNum(int val){
+        if(checkSquareNum(val) == true){
+            System.out.println("This Number "+ val + " is Squares Number");
+        }else{
+            System.out.println("This Number "+ val + " is not Squares Number");
+        }
+    }
+    public static void bai120(){
+        // Liệt kê tất cả các số chính phương nhỏ hơn n
+        showSquareNum(input());
+    }
+    
+    public static ArrayList<Float> inputMultiNum(){
+        Scanner sc = new Scanner(System.in);
+        int n = 0;
+        ArrayList<Float> arrNum = new ArrayList<>();
+        do{
+            System.out.println("Hay nhap so luong Num:");
+            n = sc.nextInt();
+            if(n <= 0 || n > 10){
+                System.out.println("Xin hay nhap so tu 0 - 10");
+            }
+        }while(n <= 0 || n > 10);
+        
+        for(int i = 0; i < n;i++){
+            int count = i + 1;
+            System.out.println("Xin hay nhap so thu "+ count +" : ");
+            float val = sc.nextFloat();
+            arrNum.add(val);
+        }
+        return arrNum;
+    }
+    
+    public static float checkVastNum(ArrayList<Float> arrNum){
+        float vastNum = arrNum.get(0);
+        
+        for(float val : arrNum){
+            if(val > vastNum){
+                vastNum = val;
+            }
+        }
+        return vastNum;
+    }
+    public static void bai122(){
+        // Viết hàm tìm giá trị lớn nhất trong mảng 1 chiều các số thực
+        
+        ArrayList<Float> arrRes = inputMultiNum();
+        float vastNum = checkVastNum(arrRes);
+        
+        System.out.println("The biggest real num is "+ vastNum);
+    }
+    
+    public static int checkSmlLoc(ArrayList<Float> arrNum){
+        int smlLoc = 0;
+        
+        for(int i = 0; i < arrNum.size(); i++){
+            if(arrNum.get(i) < arrNum.get(smlLoc)){
+                smlLoc = i;
+            }
+        }
+        return smlLoc;
+    }
+    public static void bai123(){
+        // Viết hàm tìm 1 vị trí mà giá trị tại vị trí đó là giá trị nhỏ nhất trong mảng 1 chiều các số nguyên
+        ArrayList<Float> arrRes = inputMultiNum();
+        int smlLoc = checkSmlLoc(arrRes);
+        
+        System.out.println("The small number on " + smlLoc);
+        
+    }
+    public static int checkOdd2004(ArrayList<Float> arrNum){
+        int flag = 0;
+         for(int i = 0; i < arrNum.size(); i++){
+            if(arrNum.get(i) % 2 == 0 && arrNum.get(i) < 2004){
+                flag++;
+            }
+        }
+        return 0;
+    }
+    public static void bai124(){
+        //  Viết hàm kiểm tra trong mảng các số nguyên có tồn tại giá trị chẵn nhỏ hơn 2004 hay không
+        ArrayList<Float> arrRes = inputMultiNum();
+        int flag = checkOdd2004(arrRes);
+        if(flag > 0){
+            System.out.println("The array ");;
+        }
+    }
+    
+    public static int countPrimeNo(){
+        int count = 0;
+        for(int i = 1; i < 100;i++){
+            if(checkPrimeNo(i) == true){
+                count++;
+            }
+        }
+        return count;
+    }
+    
+    public static void bai125(){
+        // Viết hàm đếm số lượng số nguyên tố nhỏ hơn 100 trong mảng
+        System.out.println("So luong so nguyen to < 100 la "+ countPrimeNo());
+    }
+    
+    public static int sumMinus(ArrayList<Float> arrNum){
+        int sumM = 0;
+        
+        for(float val : arrNum){
+            if(val < 0){
+                sumM += val;
+            }
+        }
+        return sumM;
+    }
+    
+    public static void bai126(){
+        //Viết hàm tính tổng các giá trị âm trong mảng 1 chiều các số thực
+        int sumM = sumMinus(inputMultiNum());
+        System.out.println("Sum Minus Number is " + sumM);
+    }
+    
+    public static ArrayList<Float> sortAscNum(ArrayList<Float> arrNum){
+        for(int i = 0; i < arrNum.size();i++){
+            for(int j = i +1; j < arrNum.size(); j++){
+                if(arrNum.get(i) > arrNum.get(j)){
+                    Collections.swap(arrNum, i, j);
+                }
+            }
+        }
+        
+        return arrNum;
+    }
+    
+    
+    public static void bai127(){
+        //Viết hàm sắp xếp mảng 1 chiều các số thực tăng dần
+         ArrayList<Float> arrNum = sortAscNum(inputMultiNum());
+         for(int i = 0; i < arrNum.size();i++){
+             System.out.println(arrNum.get(i));
+         }
+    }
+    
+    public static void outputRealNum (ArrayList<Float> arrNum){
+        for(int i = 0; i < arrNum.size();i++){
+            System.out.println(arrNum.get(i));
+        }
+    }
+    
+    public static void bai128v130(){
+        // Viết hàm nhập, xuất mảng 1 chiều các số thực
+        outputRealNum(inputMultiNum());
+    }
+    
+    public static ArrayList<Integer> inputInteger(){
+         Scanner sc = new Scanner(System.in);
+        int n = 0;
+        ArrayList<Integer> arrNum = new ArrayList<>();
+        do{
+            System.out.println("Hay nhap so luong Num:");
+            n = sc.nextInt();
+            if(n <= 0 || n > 10){
+                System.out.println("Xin hay nhap so tu 0 - 10");
+            }
+        }while(n <= 0 || n > 10);
+        
+        for(int i = 0; i < n;i++){
+            int count = i + 1;
+            System.out.println("Xin hay nhap so thu "+ count +" : ");
+            int val = sc.nextInt();
+            arrNum.add(val);
+        }
+        return arrNum;
+    }
+    
+    public static void outputIntegerNum (ArrayList<Integer> arrNum){
+        for(int i = 0; i < arrNum.size();i++){
+            System.out.println(arrNum.get(i));
+        }
+    }
+    
+    public static void bai129v131(){
+        // Viết hàm nhập, xuất mảng 1 chiều các số nguyên
+        outputIntegerNum(inputInteger());
+    }
+    
+    public static String inputStringMAC(){
+        String MAC = null;
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.println("Please input MAC series");
+        MAC = sc.nextLine();
+        
+        return MAC;
+    }
+    
+    public static boolean checkValidMAC (String MAC){
+        ArrayList<String> arrMAC = new ArrayList<>();
+        ArrayList<String> eachSer = new ArrayList<>();
+        
+        for(String val : MAC.split("-")){
+            arrMAC.add(val);
+        }
+        //check 6 value
+        if(arrMAC.size() != 6 ){
+            return false;
+        }
+        //check 2 digit
+        for(int i = 0; i < arrMAC.size(); i++){
+           for(String val : arrMAC.get(i).split("")){
+               eachSer.add(val);
+           }
+           if(eachSer.size() != 2){
+               return false;
+           }
+           // check valid characters
+           for(int j = 0; j < eachSer.size();j++){
+               int test = eachSer.get(j).charAt(0);
+               if((test >= 48 && test <= 57) || (test >= 65 && test <= 70)){
+                   
+               }else{
+                   return false;
+               }
+           }
+           eachSer.clear();
+        }
+        return true;
+    }
+    public static void baiToan2(){
+        // Valid Mac (xx-xx-xx-xx-xx-xx ) - 0-9 v A-F
+//        outputMAC(inputStringMAC());
+        boolean result = checkValidMAC(inputStringMAC());
+        if(result == true){
+            System.out.println("This Series is valid");
+        }else{
+            System.out.println("This Series is invalid");
+        }
+    }
+    
+    public static void main(String[] args) {
+//        int[] nums ={3,2,4};
+//        twoSum(nums, 6);
+
+       baiToan2();
+    }
+    
 }
